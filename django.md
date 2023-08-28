@@ -98,7 +98,7 @@ ModelForm和Form组件(自动生成HTML标签、请求数据校验、保存数�
 
 # 2. orm操作
 
-## 2.1 filter的一些用法
+## 2.1 查询
 
 ```
 models.PrettyNum.objects.filter(mobile="15389745567", id=1)
@@ -178,6 +178,18 @@ models.PrettyNum.objects.filter(mobile__endswith="6")
 models.PrettyNum.objects.filter(mobile__startswith="6")
 ```
 
+### 2.1.3 获取所有数据
+
+```
+models.PrettyNum.objects.filter(id=1).all()
+```
+
+### 2.1.4 获取第一条数据
+
+```
+models.PrettyNum.objects.filter(id=1).first()
+```
+
 ## 2.2 values()的使用
 
 用于获取特定的列所用，结果为字典
@@ -224,3 +236,30 @@ result:
 ('礼服', 2, 400)
 ```
 
+## 2.4 新增数据
+
+```
+models.UserInfo.objects.create(name=“wupeiqi”, pwd='123', age=19,
+                               email='xxx@live.com')
+```
+
+等价于
+
+```
+models.UserInfo.objects.create(**{“name“:“wupeiqi”, “pwd“:'123', “age“:19,
+                              “email“:'xxx@live.com'})
+```
+
+## 2.5 删除
+
+```
+models.PrettyNum.objects.all().delete()
+models.PrettyNum.objects.filter(mobile__endswith="6").delete()
+```
+
+## 2.6 修改
+
+```
+models.UserInfo.objects.all().update(age=19)
+models.PrettyNum.objects.filter(id=10).update(mobile="11111111")
+```

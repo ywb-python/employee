@@ -33,7 +33,7 @@ def login(request):
             form.add_error("password", "用户名或密码错误")
             return render(request, 'login.html', {"form": form})
         request.session['info'] = {"id": admin_object.id,
-                                   "name": admin_object.name}
+                                   "name": admin_object.username}
         request.session.set_expiry(60 * 60 * 24 * 7)
 
         return redirect("/admin/list")

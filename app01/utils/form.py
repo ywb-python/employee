@@ -93,7 +93,7 @@ class AdminModelForm(BootStrapModelForm):
 
     class Meta:
         model = models.Admin
-        fields = ["name", "password", "confirm_password"]
+        fields = ["username", "password", "confirm_password"]
         # widgets = {"password": forms.PasswordInput(render_value=True)}
 
     def clean_password(self):
@@ -111,12 +111,13 @@ class AdminModelForm(BootStrapModelForm):
 class AdminEditModelForm(BootStrapModelForm):
     class Meta:
         model = models.Admin
-        fields = ["name"]
+        fields = ["username"]
 
 
 class AdminResetModelForm(BootStrapModelForm):
     confirm_password = forms.CharField(
         label="确认密码",
+        # render_value=True表示密码明文显示
         widget=forms.PasswordInput(render_value=True),
     )
 
@@ -141,7 +142,7 @@ class AdminResetModelForm(BootStrapModelForm):
 
 
 class LoginForm(BootStrapForm):
-    name = forms.CharField(label="用户名", widget=forms.TextInput, required=True)
+    username = forms.CharField(label="用户名", widget=forms.TextInput, required=True)
     password = forms.CharField(label="密码", widget=forms.PasswordInput(
         render_value=True), required=True)
     code = forms.CharField(label="验证码", widget=forms.TextInput, required=True)

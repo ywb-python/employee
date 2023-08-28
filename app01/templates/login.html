@@ -31,7 +31,7 @@
             {% csrf_token %}
             <div class="form-group">
                 <label >用户名</label>
-                {{form.name}}
+                {{form.username}}
                 <span style="color:red;">{{ form.username.errors.0 }}</span>
             </div>
             <div class="form-group">

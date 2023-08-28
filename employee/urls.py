@@ -28,27 +28,27 @@ urlpatterns = [
     re_path(r"^media/(?P<path>.*)$", serve,
             {"document_root":settings.MEDIA_ROOT}, name='mdeia'),
     # 部门管理
-    path('depart/list', depart.depart_list),
+    path('depart/list/', depart.depart_list),
     path('depart/add/', depart.depart_add),
     path('depart/delete/', depart.depart_delete),
     path('depart/<int:nid>/edit/', depart.depart_edit),
     path('depart/multi/', depart.depart_multi),
 
     # 用户管理
-    path('user/list', user.user_list),
+    path('user/list/', user.user_list),
     path('user/add/', user.user_add),
     path('user/model/form/add/', user.user_model_form_add),
     path('user/<int:nid>/edit/', user.user_edit),
     path('user/<int:nid>/delete/', user.user_delete),
 
     # 靓号管理
-    path('pretty/list', pretty.pretty_list),
+    path('pretty/list/', pretty.pretty_list),
     path('pretty/add/', pretty.pretty_add),
     path('pretty/<int:nid>/edit/', pretty.pretty_edit),
     path('pretty/<int:nid>/delete/', pretty.pretty_delete),
 
     # 管理员账户
-    path('admin/list', admin_views.admin_list),
+    path('admin/list/', admin_views.admin_list),
     path('admin/add/', admin_views.admin_add),
     path('admin/<int:nid>/edit/', admin_views.admin_edit),
     path('admin/<int:nid>/delete/', admin_views.admin_delete),
