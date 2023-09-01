@@ -22,9 +22,12 @@ def login(request):
         return render(request, 'login.html', {"form": form})
     form = LoginForm(data=request.POST)
     if form.is_valid():
+        image_code = request.session.get('image_code', '')
+        if not image_code:
+            form.add_error("code", "验证码已过期")
+            return render(request, 'login.html', {"form": form})
         user_input_code = form.cleaned_data.pop('code')
-        code = request.session.get('image_code', '')
-        if code.upper() != user_input_code.upper():
+        if image_code.upper() != user_input_code.upper():
             form.add_error("code", "验证码错误")
             return render(request, 'login.html', {"form": form})
         admin_object = models.Admin.objects.filter(**form.cleaned_data).first()
